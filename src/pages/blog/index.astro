@@ -1,0 +1,100 @@
+---
+import Card from "../../components/BlogPreviewCard.astro"
+import { POSTS } from "../../const"
+import Layout from "../../layouts/Layout.astro"
+---
+
+<Layout title="Bearly a blog">
+  <main>
+    <div id="heading-container">
+      <h1><span class="text-gradient">bearly a blog</span></h1>
+      <div>
+        <img
+          id="rocket-bear"
+          src="/assets/rocket_bear.gif"
+          alt="It's a rocket bear"
+          width="24px"
+          height="40px"
+        />
+      </div>
+    </div>
+    <div id="back-to-home-container">
+      <a href="/">&larr; Back to Home</a>
+    </div>
+    <ul role="list" class="link-card-grid">
+      {
+        POSTS.map((p) => (
+          <Card
+            href={p.slug}
+            title={p.title}
+            body={p.body}
+            author={p.author === "me" ? { name: "Johkade" } : p.author}
+            category={p.category}
+            createdAt={p.createdAt}
+          />
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  #heading-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  #rocket-bear {
+    position: relative;
+    top: 8px;
+    animation: rocket-bear-anim 1s infinite;
+  }
+  @keyframes rocket-bear-anim {
+    0%,
+    100% {
+      left: 0;
+    }
+    50% {
+      left: 2px;
+    }
+  }
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 80ch;
+    color: white;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  #back-to-home-container {
+    line-height: 1.6;
+    margin: 1rem 0;
+    display: flex;
+    align-self: flex-start;
+    border-radius: 0.4rem;
+  }
+  #back-to-home-container a {
+    color: white;
+  }
+  #back-to-home-container a:hover {
+    color: #eda0ed;
+  }
+
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
+</style>

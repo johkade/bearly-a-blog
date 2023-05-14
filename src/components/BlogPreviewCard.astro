@@ -1,0 +1,63 @@
+---
+export interface Props {
+  title: string
+  body: string
+  href: string
+  createdAt: string
+  author: { name: string }
+  category: string
+}
+
+const { href, title, body, author, category, createdAt } = Astro.props
+---
+
+<li class="link-card-wrapper">
+  <div class="link-card">
+    <a href={href}>
+      <h2>
+        {title}
+      </h2>
+      <p class="created-line">{createdAt} – {author.name}</p>
+      <p>
+        {body}
+      </p>
+    </a>
+  </div>
+</li>
+<style>
+  .link-card-wrapper {
+    padding: 2px;
+    background: #d97aec;
+    background: linear-gradient(90deg, #823e8f 0%, #d97aec 35%, #e5abf0 100%);
+    border-radius: 16px;
+    list-style: none;
+    box-shadow: #f396f028 0px 0px 48px, inset 0 0 96px #f396f011;
+  }
+  .link-card {
+    background-image: none;
+    display: flex;
+    border-radius: 14px;
+    background-color: #0a0614;
+  }
+  .link-card > a {
+    width: 100%;
+    text-decoration: none;
+    line-height: 1.4;
+    padding: 1rem 1.3rem;
+    color: white;
+  }
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  p {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    color: #c3c3c3;
+  }
+  .created-line {
+    font-size: 12px;
+    color: #686868;
+  }
+</style>
