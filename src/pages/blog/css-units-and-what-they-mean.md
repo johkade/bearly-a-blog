@@ -22,8 +22,6 @@ Based on the parents size, if it has one. For fonts, it behaves the same as `em`
 
 Always based on the current view-port, not the parent. `1vh` => "1% of the view-ports height"
 
----
-
 ## rem and em
 
 Both `rem` and `em` are relative sizes based on _font sizes_.
