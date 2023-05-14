@@ -4,37 +4,54 @@ title: css units and what they actually mean
 draft: false
 ---
 
-# css units and what they actually mean
+# CSS Units and What They Actually Mean
 
-React Native has revolutionized the world of mobile app development by allowing developers to build cross-platform applications using JavaScript. One of the key tools that has contributed to the success and rapid adoption of React Native is Expo.
+Let's get right to it:
 
-## What is React Native?
+## Pixel units
 
-React Native is a powerful framework developed by Facebook that enables developers to build native mobile applications for iOS and Android using JavaScript and React. It allows for code sharing across platforms, reducing development time and effort while still delivering a native-like user experience.
+It's static pixels - as in always the same.
 
-## The Role of Expo
+Keep in mind, that a pixel is actually a physical size (~1/96th of an inch). So on high density screens, the physical size is fairly stable.
 
-Expo is an open-source `platform` and set of tools built around React Native that provides additional capabilities and simplifies the development workflow. It acts as a development environment, making it easier to kickstart a React Native project and provides a range of features that can enhance the development process. Here are some key roles that [Expo](https://expo.dev) plays:
+## Percentages
 
-```css
-div[data-blur="blur-small"] {
-  composes: commonBlur;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  filter: blur(0);
-}
-div[data-blur="blur-default"] {
-  composes: commonBlur;
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  filter: blur(0);
-}
+Based on the parents size, if it has one. For fonts, it behaves the same as `em`.
+
+## View width and height
+
+Always based on the current view-port, not the parent. `1vh` => "1% of the view-ports height"
+
+---
+
+## rem and em
+
+Both `rem` and `em` are relative sizes based on _font sizes_.
+
+**rem** stands for "root element". So `rem` sizes are based on the root font size.
+**em** stands for just "element". `em` units are based on the parent's font size.
+
+```cs
+height: 1rem; /*100% of the root font size*/
+width: 1em; /*100% of the parent's font size*/
 ```
 
-## Conclusion
+`rem` is useful for defining font sizes, while `em` is useful in some cases for defining e.g. the height of a text container.
 
-React Native, combined with Expo, provides developers with a powerful toolkit to build cross-platform mobile applications. Expo simplifies the development process, offering an easy setup, development and testing tools, access to native APIs, and over-the-air updates. It empowers developers to create high-quality and feature-rich apps efficiently, ultimately contributing to the growth and popularity of the React Native ecosystem.
+## Physical sizes
 
-So whether you are a beginner starting your first React Native project or an experienced developer looking to speed up your development process, Expo can be a valuable asset in your React Native journey.
+Yes, they exist! If you deal with printed media, you may want to fall back to physical sizes:
 
-Happy coding!
+`cm`, `mm`, `in`, `pc => 1/6th in` , `pt => 1/72nd in`, `px => 1/96th in`
+
+## When to use which:
+
+**Pixels** for absolute sizes, like borders, shadows and other unresponsive sizes. (Or as breakpoints of course.)
+
+**rems** for font sizes and closely related/dependent containers
+
+**ems** for internal component styles, where it just makes sense (e.g. height of a tag)
+
+**vh**, **vw** and **percentages** are useful for layouts, like headers, side-bars and similar
+
+But **flex** is still a top notch solution.

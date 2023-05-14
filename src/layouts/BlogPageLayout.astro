@@ -28,12 +28,15 @@ const { title } = Astro.props
           height="40px"
         />
       </div>
+      <div class="back-to-home-container">
+        <a href="/blog">&larr; Back to articles</a>
+      </div>
       <main id="main">
-        <div id="back-to-home-container">
-          <a href="/blog">&larr; Back to articles</a>
-        </div>
         <slot />
       </main>
+      <div class="back-to-home-container">
+        <a href="/blog">&larr; Back to articles</a>
+      </div>
     </div>
   </body>
 </html>
@@ -181,17 +184,17 @@ const { title } = Astro.props
       opacity 1s ease-out;
     -webkit-transform: translate3d(0, 0, 0);
   }
-  #back-to-home-container {
-    line-height: 1.6;
-    margin: 1rem 0;
+  .back-to-home-container {
+    margin: 40px 0px;
     display: flex;
-    align-self: flex-start;
-    border-radius: 0.4rem;
+    width: 100%;
+    max-width: 880px;
+    align-self: center;
   }
-  #back-to-home-container a {
+  .back-to-home-container a {
     color: white;
   }
-  #back-to-home-container a:hover {
+  .back-to-home-container a:hover {
     color: #eda0ed;
   }
   .full-width-image {
@@ -208,6 +211,7 @@ const { title } = Astro.props
     width: 100%;
     max-width: 880px;
     align-self: center;
+    margin: 20px 0px 20px 0px;
   }
   h1 {
     font-size: 32px;
@@ -256,6 +260,10 @@ const { title } = Astro.props
     transition: background-color 0.2s ease-out 100ms;
     border: 1px solid #f396f099;
     box-shadow: #f396f028 0px 0px 48px, inset 0 0 96px #f396f011;
+    min-height: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .astro-code:hover {
     background-color: #5e255430 !important;
@@ -263,6 +271,9 @@ const { title } = Astro.props
   .astro-code:hover .astro-code-copy {
     display: block;
     opacity: 1;
+  }
+  .astro-code .line {
+    line-height: 18px;
   }
   .astro-code-copy {
     position: absolute;
